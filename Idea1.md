@@ -76,3 +76,12 @@ function finalize(FinalizeTxMeta memory metat) external ensureFinalized(metat) {
 This function manages the final confirmation of a single transaction. It performs transaction verification and calls an internal function to complete the transaction processing.
 
 These functions show that `mulFinalize` is designed to handle a series of transactions, whereas `finalize` is specialized for individual transactions. Although their operations are similar, `mulFinalize` involves more complex logic and handling due to the additional loop structure needed to process multiple transactions. This structural inconsistency might be a point of concern, particularly in maintaining code cleanliness and avoiding errors.
+
+--------------------------------
+
+12.17补充
+如果我们将这样的概念运用到非细粒度这样的场景中，运用到业务流，或者多函数的视角下，也可以有更多的结论：
+1. 多个函数组成的业务流和另外多个函数组成的业务流，可能存在手性关系，简单来说是一个多对多的关系
+2. 既然有一对一和多对多，那么也存在着一对多的关系，简单来说，就是一个函数可以和多个函数组成的业务流有一致性关联，同时多个函数可以和另外一个单函数有一致性关联，这种关联我们称之为”大π键“
+3. 大π键是一个化学中的概念，它可能会出现在苯环中的共轭分子，共轭双键
+4. 实际上，这个手性函数的概念和灵感就是来自于”绝命毒师“，感谢学化学的媳妇向我揭示了这个情境下的更多可能性
